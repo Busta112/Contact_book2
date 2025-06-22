@@ -1,13 +1,62 @@
 body{
-    background: linear-gradient(90deg, #37dbde, #32cfa3);
-}
-h1{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 150px;
+    background: linear-gradient(90deg, #37dbde, #32cfa3, rgb(89, 219, 122));
+    font-family: monospace;
 }
 
+#header{
+    font-family:monospace;
+    text-align: center;
+    align-items: center;
+    background-color: whitesmoke;
+    width:300px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 30px auto 30px auto;
+    
+}
+/*--------------------------- API PAGE---------------------------*/
 .api-form{
     background: whitesmoke;
-    box-shadow: inset;
-    border-radius: 100px;
+    box-shadow:black;
+    border-radius: 20px;
     text-align: center;
+    width: 350px;
+    margin: auto;
+    height: 200px;
+    padding: 100px;
 }
+
+
+input {
+    margin-bottom: 20px;/*Space between*/
+    border-radius: 20px;
+    padding: 10px;/*Space Inside*/
+    width: 200px;/*Streches the input*/
+
+}
+
+.api-form h1{
+    font-family: monospace;
+}
+.api-form input::placeholder{
+    text-align: center;
+    font-family: monospace;
+}
+
+button{
+    margin-top: 10px;
+    border-radius: 20px;
+    font-weight: bold; 
+}
+
+button:hover{
+   transform: scale(1.05);
+}
+
+/*-------------------- CONTACT BOOK LIST AND BUTTONS--------------------------------*/
+
+
+
