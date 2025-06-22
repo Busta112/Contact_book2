@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+        
+
+    <div class="heading">
+        <h1>Add Contact</h1>
+    </div>
+    <form id="editForm">
+        
+        <label for="firstName">First Name: </label>
+        <input type="text" name="firstname" id="firstname" placeholder="First Name" required><br/>
+        <label for="lastName">Last Name: </label>
+        <input type="text" name="lastname" id="lastname" placeholder="Last Name" required><br/>
+        <label for="mobile">Mobile: </label>
+        <input type="text" name="mobile" id="mobile" placeholder="0712345678" required><br/>
+        <label for="email">Email Address: </label>
+        <input type="text" name="email" id="email" placeholder="your-email@gmail.com" required> <br/>
+        <label for="avatar">Select a file</label>
+        <input type="file" name="avatar" id="avatar"><br/>
+        <button type="submit" id="submitForm">Submit</button>
+    </form>
+
+    <button id="homeLink" type="button">Home</button>
+        
+        <script src="config.js"></script>
+        <script>
+
+            document.getElementById("homeLink").addEventListener('click', homeLink);//link to homepage
+            document.getElementById("submitForm").addEventListener('submit', submitForm);// Add an event listener to the form that listens for the 'submit' event and calls the submitForm function
+            // This function is triggered when the form is submitted
+            function submitForm(e) {
+                e.preventDefault();// Stop the page from refreshing when the form is submitted
+
+                // Create a new FormData object using the form element with id "editForm"
+                // This collects all the data entered into the form (like name, email, file, etc.)
+                const form = new FormData(document.querySelector('#editForm'));
+                form.append('apiKey', apiKey);//Add an extra field called 'apiKey' to the form data, using the value from config.js
+                
+                // Send a POST request to the server at the specified URL
+                fetch(rootPath + "controller/insert-contact/", {
+                    method: 'POST', // Specify that this is a POST request
+                    headers: {'Accept': 'application/json, *.*'}, // Indicate that we expect a JSON response,
+                    body: form
+                })
+                .then(function(response){
+                    /*function (response) AND function (data) - Wrong Syntax
+                      function(response) AND function(data) - Correct Syntax*/
+                    return response.text(); // Convert the response to text
+                })
+                .then(function(data){
+                    if(data == "1"){
+                        alert("Contact added successfully!"); // Show a success message if the response is "1"
+                        homeLink();//link to homepage 
+                    } else {
+                        alert("Error adding contact"); // Show an error message if the response is not "1"
+                        homeLink();//link to homepage
+                    }
+                })
+                
+            }
+
+            function homeLink() {
+                window.open("index.html", "_self");
+            }
+
+        </script>
+    
+</body>
+</html>

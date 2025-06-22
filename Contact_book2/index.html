@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="fetchContacts()"> <!-- Automatically gets the contacts -->
+    <div id="table">Contacts loading....</div><!-- This is going to be replaced with a table using JavaScript. -->
+    <button id="refresh" type="button">refresh</button>
+    <button id="addContact" type="button">Add Contact</button>
+
+    <script src="config.js"></script>
+    <script>
+
+        //Adding a Refresh button to refresh after adding Contact
+        document.getElementById("refresh").addEventListener('click', fetchContacts);
+        document.getElementById("addContact").addEventListener('click', addContact);
+
+        function fetchContacts() {
+
+            fetch(rootPath + "controller/get-contacts/") // Fetching the contacts from the server using the API key.
+                   /*function (response) AND function (data) - Wrong Syntax
+                     function(response) AND function(data) - Correct Syntax*/
+                .then(function(response) {
+                    return response.json();// Turns the response into a json format.
+                })
+                .then(function(data) {
+                    displayOutput(data); //it's a function that displays the data output
+                    //console.log(data); // Log the data to the console for debugging
+                });
+        }
+
+        function displayOutput(data) {
+           let output = "<table>";
+
+            //A type of loop used to ilerate through array
+            for (a in data) {
+                output += `
+                         
+                         <tr onclick="editContact(${data[a].id})">
+                            <td> <img src="${rootPath}controller/uploads/${data[a].avatar}" width="40"/> </td>
+                            <td><h5>${data[a].firstname}</h5></td>
+                            <td><h5>${data[a].lastname}</h5></td>
+                         </tr>   
+                    `;
+            }
+            //This is the end of the table
+            output += "</table>";
+            document.getElementById("table").innerHTML = output;
+        }
+        //This function is called when the "Add Contact" button is clicked
+        function addContact() {
+            window.open("addContact.html", "_self");
+        }
+
+        function editContact(id) {
+            // This function is called when a contact is clicked to edit
+            // It redirects to the editContact.html page with the contact ID as a query parameter
+            window.open("editContact.html?=" + id, "_self");
+        }
+
+    </script>
+</body>
+
+</html>

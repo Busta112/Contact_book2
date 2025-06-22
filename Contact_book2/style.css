@@ -1,0 +1,13 @@
+body{
+    background: linear-gradient(90deg, #37dbde, #32cfa3);
+}
+h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.api-form{
+    background: whitesmoke;
+    box-shadow: inset;
+    border-radius: 100px;
+    text-align: center;
+}
