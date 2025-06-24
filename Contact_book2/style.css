@@ -56,7 +56,37 @@ button:hover{
    transform: scale(1.05);
 }
 
-/*-------------------- CONTACT BOOK LIST AND BUTTONS--------------------------------*/
+/*-------------------- CONTACT BOOK LIST --------------------------------*/
+.contact-table{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    margin: 20px auto;
+    border-collapse: collapse; /*Removes spaces between borders*/
+    width: 100%;
+    height: 50%;
+    text-align: center;
+    max-width: 600px;
+    margin-top: -50px; /*the space between */
+    overflow: hidden; /* Prevent overflow on corners */
+}
+
+.contact-table tr{
+    border-bottom: 1px solid black;
+    cursor:pointer;
+    
+}
+
+.contact-table td{
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+     /*   border-right:1px solid black;    This is for Vertical line*/
+}
+
+.contact-table td:hover{
+    transform: scale(1.05);
+}
+
 
 
 
